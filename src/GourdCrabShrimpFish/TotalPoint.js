@@ -1,6 +1,11 @@
 import React from "react";
+import { useSelector } from "react-redux";
 
-export default function TotalPoint() {
+export default function TotalPoint(props) {
+  const totalPoint = useSelector(
+    (state) => state.GourdCrabShrimpFishReducer.totalPoint
+  );
+
   return (
     <div>
       <h3 className="text-center display-4" style={{ color: "green" }}>
@@ -12,7 +17,7 @@ export default function TotalPoint() {
           style={{ fontSize: "30px", borderRadius: "8px" }}
         >
           Total Point:
-          <span className="text-warning">100</span>
+          <span className="text-warning">{totalPoint.toLocaleString()}</span>
         </span>
       </div>
       <div className="text-center p-5">

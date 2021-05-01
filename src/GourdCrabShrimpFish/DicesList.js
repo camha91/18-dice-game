@@ -1,6 +1,12 @@
 import React from "react";
+import Dice from "./Dice";
+import { useSelector } from "react-redux";
 
 export default function DicesList() {
+  const dicesList = useSelector(
+    (state) => state.GourdCrabShrimpFishReducer.dicesList
+  );
+
   return (
     <div className="mt-5 p-3">
       <div
@@ -9,27 +15,15 @@ export default function DicesList() {
       >
         <div className="row">
           <div className="col-12 text-center mt-5">
-            <img
-              style={{ width: 60 }}
-              src="./img/GourdCrabShrimpFish/gourd.png"
-              alt="gourd.png"
-            />
+            <Dice diceItem={dicesList[0]} />
           </div>
         </div>
         <div className="row mt-3">
           <div className="col-6 p-5 text-right">
-            <img
-              style={{ width: 60 }}
-              src="./img/GourdCrabShrimpFish/gourd.png"
-              alt="gourd.png"
-            />
+            <Dice diceItem={dicesList[1]} />
           </div>
           <div className="col-6 p-5">
-            <img
-              style={{ width: 60 }}
-              src="./img/GourdCrabShrimpFish/gourd.png"
-              alt="gourd.png"
-            />
+            <Dice diceItem={dicesList[2]} />
           </div>
         </div>
       </div>
