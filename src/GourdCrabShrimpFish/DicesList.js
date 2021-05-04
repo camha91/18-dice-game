@@ -1,11 +1,13 @@
 import React from "react";
 import Dice from "./Dice";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
 export default function DicesList() {
   const dicesList = useSelector(
     (state) => state.GourdCrabShrimpFishReducer.dicesList
   );
+
+  const dispatch = useDispatch();
 
   return (
     <div className="mt-5 ml-5">
@@ -32,6 +34,11 @@ export default function DicesList() {
       </div>
       <div style={{ marginLeft: "20%", marginTop: "5%" }}>
         <button
+          onClick={() =>
+            dispatch({
+              type: "ROLL_DICE",
+            })
+          }
           style={{ fontSize: "50px", width: 150, borderRadius: "20px" }}
           className="btn btn-primary"
         >

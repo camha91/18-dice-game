@@ -81,6 +81,21 @@ const GourdCrabShrimpFishReducer = (state = initialState, action) => {
 
       return { ...state };
     }
+    case "ROLL_DICE": {
+      let randomDicesList = [];
+
+      for (let i = 0; i < 3; i++) {
+        //Create a random number from 0 - 5
+        const randomNum = Math.floor(Math.random() * 6);
+        // Create random dice
+        const randomDice = state.gameChoicesList[randomNum];
+
+        randomDicesList.push(randomDice);
+      }
+
+      state.dicesList = randomDicesList;
+      return { ...state };
+    }
     default:
       return { ...state };
   }
