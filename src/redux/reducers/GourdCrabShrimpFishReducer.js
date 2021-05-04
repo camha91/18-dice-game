@@ -47,12 +47,43 @@ const initialState = {
     },
   ],
 
-  totalPoint: 100,
+  totalPoint: 1000,
 };
 
-export default (state = initialState, action) => {
+const GourdCrabShrimpFishReducer = (state = initialState, action) => {
   switch (action.type) {
+    case "BET_POINT": {
+      console.log("action", action);
+      // Find in gameChoicesList the matching gameChoice
+      const gameChoicesListUpdate = [...state.gameChoicesList];
+
+      const indexGameChoice = gameChoicesListUpdate.findIndex(
+        (gameChoice) => gameChoice.id === action.gameChoice.id
+      );
+
+      console.log(indexGameChoice);
+
+      if (indexGameChoice !== -1) {
+        if (action.changePoint) {
+          if (state.totalPoint > 0) {
+            gameChoicesListUpdate[indexGameChoice].point += 100;
+            state.totalPoint -= 100;
+          }
+        } else {
+          if (gameChoicesListUpdate[indexGameChoice].point > 0) {
+            gameChoicesListUpdate[indexGameChoice].point -= 100;
+            state.totalPoint += 100;
+          }
+        }
+      }
+
+      state.gameChoicesList = gameChoicesListUpdate;
+
+      return { ...state };
+    }
     default:
-      return state;
+      return { ...state };
   }
 };
+
+export default GourdCrabShrimpFishReducer;

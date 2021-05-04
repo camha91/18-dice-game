@@ -8,26 +8,29 @@ export default function DicesList() {
   );
 
   return (
-    <div className="mt-5 p-3">
+    <div className="mt-5 ml-5">
       <div
-        className="bg-white ml-2"
-        style={{ width: 300, height: 300, borderRadius: 150 }}
+        className="bg-white"
+        style={{ width: 300, height: 300, borderRadius: 150, paddingLeft: 10 }}
       >
         <div className="row">
-          <div className="col-12 text-center mt-5">
+          <div
+            className="col-12 text-center"
+            style={{ marginLeft: 75, marginTop: -20 }}
+          >
             <Dice diceItem={dicesList[0]} />
           </div>
         </div>
-        <div className="row mt-3">
-          <div className="col-6 p-5 text-right">
+        <div className="row">
+          <div className="col-4 text-right">
             <Dice diceItem={dicesList[1]} />
           </div>
-          <div className="col-6 p-5">
+          <div className="col-4 text-right">
             <Dice diceItem={dicesList[2]} />
           </div>
         </div>
       </div>
-      <div className="text-center mt-5">
+      <div style={{ marginLeft: "20%", marginTop: "5%" }}>
         <button
           style={{ fontSize: "50px", width: 150, borderRadius: "20px" }}
           className="btn btn-primary"

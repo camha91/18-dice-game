@@ -17,5 +17,5 @@ export default function GameChoicesList(props) {
     });
   };
 
-  return <div className="row mt-3">{renderGameChoices()}</div>;
+  return <div className="row mt-5">{renderGameChoices()}</div>;
 }

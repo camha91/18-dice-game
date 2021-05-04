@@ -16,20 +16,20 @@
 }
 
 .scene {
-  width: 200px;
-  height: 200px;
-  border: 1px solid #CCC;
-  margin: 80px;
-  perspective: 200px;
+  width: 50px;
+  height: 50px;
+  margin-top: 80px;
+  perspective: 50px;
 }
 
+
 .cube {
-  width: 200px;
-  height: 200px;
+  width: 50px;
+  height: 50px;
   position: relative;
   transform-style: preserve-3d;
-  transform: translateZ(-100px);
-  transition: transform 1s;
+  transition: transform infinite;
+  transform: translateZ(-25px) ;
 }
 
 .cube.show-front  {
@@ -57,13 +57,15 @@
     rotateX(  90deg); 
   }
 
+
+
 .cube__face {
   position: absolute;
-  width: 200px;
-  height: 200px;
-  border: 2px solid black;
-  line-height: 200px;
-  font-size: 40px;
+  width: 50px;
+  height: 50px;
+  border: 2px solid yellow;
+  line-height: 40px;
+  font-size: 5px;
   font-weight: bold;
   color: white;
   text-align: center;
@@ -108,3 +110,23 @@
  }
 
 label { margin-right: 10px; }
+
+.front  { 
+  transform: rotateY(0deg) rotateX(0deg) rotateZ(0deg) translateZ(25px);
+ }
+.right  { 
+  transform: rotateY( 90deg) rotateX(0deg) rotateZ(0deg)  translateZ(25px);
+ }
+.back   { 
+  transform: rotateY(180deg) rotateX(0deg) rotateZ(0deg)  translateZ(25px);
+ }
+.left   { 
+  transform: rotateY(-90deg) rotateX(0deg) rotateZ(0deg)  translateZ(25px);
+ }
+.top    { 
+  transform: rotateX( 90deg) rotateY(0deg) rotateZ(0deg)  translateZ(25px);
+ }
+.bottom { 
+  transform: rotateX(-90deg) rotateY(0deg) rotate(0deg)  translateZ(25px);
+ }
+
