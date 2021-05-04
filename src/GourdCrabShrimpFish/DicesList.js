@@ -36,7 +36,7 @@ export default function DicesList() {
         <button
           onClick={() =>
             dispatch({
-              type: "ROLL_DICE",
+              type: "PLAY_GAME",
             })
           }
           style={{ fontSize: "50px", width: 150, borderRadius: "20px" }}

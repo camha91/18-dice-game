@@ -53,7 +53,6 @@ const initialState = {
 const GourdCrabShrimpFishReducer = (state = initialState, action) => {
   switch (action.type) {
     case "BET_POINT": {
-      console.log("action", action);
       // Find in gameChoicesList the matching gameChoice
       const gameChoicesListUpdate = [...state.gameChoicesList];
 
@@ -81,7 +80,7 @@ const GourdCrabShrimpFishReducer = (state = initialState, action) => {
 
       return { ...state };
     }
-    case "ROLL_DICE": {
+    case "PLAY_GAME": {
       let randomDicesList = [];
 
       for (let i = 0; i < 3; i++) {
@@ -94,6 +93,20 @@ const GourdCrabShrimpFishReducer = (state = initialState, action) => {
       }
 
       state.dicesList = randomDicesList;
+      console.log("randomDicesList: ", state.dicesList);
+
+      // Increase point when dices match game choice
+      randomDicesList.forEach((randomDice, index) => {
+        // Find the index of the dice in gameChoiceList
+        const indexGameChoice = state.gameChoicesList.findIndex(
+          (gameChoice) => gameChoice.id === randomDice.id
+        );
+
+        if (index !== -1) {
+          state.totalPoint += state.gameChoicesList[indexGameChoice].point;
+        }
+      });
+
       return { ...state };
     }
     default:
