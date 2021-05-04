@@ -107,6 +107,31 @@ const GourdCrabShrimpFishReducer = (state = initialState, action) => {
         }
       });
 
+      // Return betting point ONE TIME when game choice match random dice
+      state.gameChoicesList.forEach((gameChoice, index) => {
+        // Find the index of the random dice that match the game choice
+        const indexDice = randomDicesList.findIndex(
+          (randomDice) => randomDice.id === gameChoice.id
+        );
+
+        if (indexDice !== -1) {
+          state.totalPoint += gameChoice.point;
+        }
+      });
+
+      // Refresh game point
+      state.gameChoicesList = state.gameChoicesList.map((gameChoice, index) => {
+        return { ...gameChoice, point: 0 };
+      });
+
+      return { ...state };
+    }
+    case "PLAY_AGAIN": {
+      state.totalPoint = 1000;
+      state.gameChoicesList = state.gameChoicesList.map((gameChoice, index) => {
+        return { ...gameChoice, point: 0 };
+      });
+
       return { ...state };
     }
     default:

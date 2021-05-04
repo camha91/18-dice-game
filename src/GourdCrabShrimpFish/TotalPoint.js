@@ -1,10 +1,12 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
 export default function TotalPoint(props) {
   const totalPoint = useSelector(
     (state) => state.GourdCrabShrimpFishReducer.totalPoint
   );
+
+  const dispatch = useDispatch();
 
   return (
     <div>
@@ -22,6 +24,11 @@ export default function TotalPoint(props) {
       </div>
       <div className="text-center p-5">
         <button
+          onClick={() =>
+            dispatch({
+              type: "PLAY_AGAIN",
+            })
+          }
           className="p-3 text-white bg-success"
           style={{
             fontSize: "20px",
