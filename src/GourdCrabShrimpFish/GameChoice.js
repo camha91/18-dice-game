@@ -7,20 +7,34 @@ export default function GameChoice(props) {
 
   const dispatch = useDispatch();
 
-  const [decrease, setDecrease] = useState(false);
+  // const [decrease, setDecrease] = useState(false);
 
-  const propsUseSpringDecrease = useSpring({
-    from: { scale: 1 },
-    to: { scale: 1.25 },
-    reset: true,
+  // const [decrease, setDecrease]  = useSpring({
+
+  // });
+
+  // const [increase, setIncrease] = useState(false);
+
+  // const propsUseSpringIncrease = useSpring({
+  //   from: { scale: 1 },
+  //   to: { scale: 1.25 },
+  //   reset: true,
+  // });
+
+  const [propsUseSpringIncrease, setIncrease] = useSpring(() => {
+    return {
+      to: { scale: 1.25 },
+      from: { scale: 1 },
+      reset: true,
+    };
   });
 
-  const [increase, setIncrease] = useState(false);
-
-  const propsUseSpringIncrease = useSpring({
-    from: { scale: 1 },
-    to: { scale: 1.25 },
-    reset: true,
+  const [propsUseSpringDecrease, setDecrease] = useSpring(() => {
+    return {
+      to: { scale: 1.25 },
+      from: { scale: 1 },
+      reset: true,
+    };
   });
 
   return (
@@ -32,9 +46,15 @@ export default function GameChoice(props) {
       />
       <div className="bg-success mt-2 pb-2 text-center">
         <animated.button
-          style={propsUseSpringDecrease}
+          style={{
+            transform: propsUseSpringDecrease.scale.interpolate(
+              (scale) => `scale(${scale})`
+            ),
+          }}
           onClick={() => {
-            setDecrease({ scale: decrease ? 1.25 : 1 });
+            // setDecrease(!decrease);
+            setDecrease({ scale: 1 });
+            setDecrease({ scale: 1.25 });
 
             dispatch({
               type: "BET_POINT",
@@ -50,9 +70,16 @@ export default function GameChoice(props) {
           {gameChoice.point}
         </span>
         <animated.button
-          style={propsUseSpringIncrease}
-          onClick={() => {
-            setIncrease({ scale: increase ? 1.25 : 1 });
+          style={{
+            transform: propsUseSpringIncrease.scale.interpolate(
+              (scale) => `scale(${scale})`
+            ),
+          }}
+          onClick={(e) => {
+            console.log(e.target);
+            // setIncrease(!increase);
+            setIncrease({ scale: 1 });
+            setIncrease({ scale: 1.25 });
 
             dispatch({
               type: "BET_POINT",
