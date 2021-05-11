@@ -1,24 +1,32 @@
 import React, { Fragment } from "react";
-import { useSpring, animated, to } from "react-spring";
+import { useSpring, animated } from "react-spring";
 
 export default function Dice(props) {
   const { diceItem } = props;
 
-  const propsDice = useSpring(() => ({
-    to: [1800, 1800, 1800],
-    from: [0, 0, 0],
+  const [propsDice, set] = useSpring(() => ({
+    to: { xyz: [1800, 1800, 1800] },
+    from: { xyz: [0, 0, 0] },
     config: {
       duration: 1000,
     },
     reset: true,
   }));
 
-  // set({ xyz: [1800, 1800, 1800] });
+  set({ xyz: [1800, 1800, 1800] });
 
   return (
     <Fragment>
       <div className="scene ml-5">
-        <animated.div className="cube">
+        <animated.div
+          className="cube"
+          style={{
+            transform: propsDice.xyz.interpolate(
+              (x, y, z) =>
+                `translateZ(-20px) rotateX(${x}deg) rotateY(${y}deg) rotateZ(${z}deg)`
+            ),
+          }}
+        >
           <div className="ml-3 cube__face front">
             <img
               style={{ width: "100%" }}
@@ -27,14 +35,7 @@ export default function Dice(props) {
             />
           </div>
 
-          <div
-            className="ml-3 cube__face back"
-            // style={{
-            //   transform: propsDice.to(
-            //     (x, y, z) => `rotate3d(${x}px, ${y}px, ${z}px)`
-            //   ),
-            // }}
-          >
+          <div className="ml-3 cube__face back">
             <img
               style={{ width: "100%" }}
               src="/img/GourdCrabShrimpFish/crab.png"
